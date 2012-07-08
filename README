@@ -1,0 +1,23 @@
+pl0-compiler
+(c)by xStone 2012
+released under terms of GNU General Public License v2
+
+
+1. Build
+----------------
+$ mkdir build
+$ cd build
+$ qmake ../pl0-compiler.pro
+$ make
+
+
+2. Usage
+----------------
+pl0-compiler [ flags ] source_code_file
+
+Flags:
+-l: lex source code, and output token stream.
+-p: parse token stream, and output abstract syntax tree.
+-a: analytics abstract syntax tree, and output pcode.
+-e: execute pcode.
+-?: help.
