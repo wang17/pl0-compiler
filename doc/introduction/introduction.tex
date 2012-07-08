@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\title{Introduction to PL/0 Language}
+\author{xStone}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Lexical Rule}
+\begin{description}
+ \item[Keyword]\hfill\begin{center}\setlength{\tabcolsep}{16pt}
+                  \begin{tabular}{*{4}{|c}|}
+				   \hline
+				   begin	&call	&const		&do\\
+				   \hline
+				   end		&if		&procedure	&read\\
+				   \hline
+				   then		&var	&while		&write\\
+				   \hline
+				   odd		&		&			&\\
+				   \hline
+                  \end{tabular}
+                 \end{center}
+ \item[Operator]\hfil\begin{center}\setlength{\tabcolsep}{16pt}
+                 \begin{tabular}{*{4}{|c}|}
+                  \hline
+                  $+$	&$-$	&$*$	&$/$\\
+                  \hline
+                  $<$	&$<=$	&$>$	&$>=$\\
+                  \hline
+                  $=$	&$\#$	&$:=$	&\\
+                  \hline
+                 \end{tabular}
+                \end{center}
+ \item[Delimiter]\hfil\begin{center}\setlength{\tabcolsep}{16pt}
+                 \begin{tabular}{*{4}{|c}|}
+                  \hline
+                  ;		&,		&(		&)\\
+                  \hline
+                  .		&		&		&\\
+                  \hline
+                 \end{tabular}
+                \end{center}
+ \item[Identifier]\hfil\begin{center}
+                 'ident' $\longrightarrow$ [a-zA-Z]$^+$
+                 \end{center}
+ \item[Number]\hfil\begin{center}
+				'number' $\longrightarrow$ [0-9]$^+$
+               \end{center}
+\end{description}
+	
+\section{Grammar Rule}
+\begin{enumerate}
+ \item program $\longrightarrow$ block '.'
+ \item block $\longrightarrow$ [ const\_declaraction ] [ var\_declaraction ] \{ procedure\_declaraction \} statement
+ \item const\_declaraction $\longrightarrow$ 'const' ident '$=$' number \{ ',' ident '$=$' number \} ';'
+ \item var\_declaraction $\longrightarrow$ 'var' ident \{ ',' ident \} ';'
+ \item procedure\_declaraction $\longrightarrow$ 'procedure' ident ';' block ';'
+ \item statement $\longrightarrow$ assign\_statement $\arrowvert$ call\_statement $\arrowvert$  begin\_end\_statement $\arrowvert$  if\_then\_statement $\arrowvert$  while\_do\_statement $\arrowvert$  read\_statement $\arrowvert$  write\_statement $\arrowvert$  $\epsilon$
+ \item assign\_statement $\longrightarrow$ ident '$:=$' expression
+ \item call\_statement $\longrightarrow$ 'call' ident
+ \item begin\_end\_statement $\longrightarrow$ 'begin' statement \{ ';' statement \} 'end'
+ \item if\_then\_statement $\longrightarrow$ 'if' condition 'then' statement
+ \item while\_do\_statement $\longrightarrow$ 'while' condition 'do' statement
+ \item read\_statement $\longrightarrow$ 'read' '(' ident \{ ',' ident \} ')'
+ \item write\_statement $\longrightarrow$ 'write' '(' expression \{ ',' expression \} ')'
+ \item condition $\longrightarrow$ 'odd' expression $|$ expression ( '$=$' $\arrowvert$  '$\#$' $\arrowvert$  '$<$' $\arrowvert$  '$<=$' $\arrowvert$  '$>$' $\arrowvert$  '$>=$' ) expression
+ \item expression $\longrightarrow$ [ '$+$' $\arrowvert$  '$-$' ] term \{ ( '$+$' $\arrowvert$  '$-$' ) term \}
+ \item term $\longrightarrow$ factor \{ ( '$*$' $\arrowvert$  '$/$' ) factor \}
+ \item factor $\longrightarrow$ ident $\arrowvert$  number $\arrowvert$  '(' expression ')'
+\end{enumerate}
+
+\end{document}

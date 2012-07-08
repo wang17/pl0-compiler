@@ -1,0 +1,53 @@
+#ifndef TOK
+#define TOK(X)
+#endif
+#ifndef PUNCTUATOR
+#define PUNCTUATOR(X, Y) TOK(X)
+#endif
+#ifndef KEYWORD
+#define KEYWORD(X) TOK(kw_ ## X)
+#endif
+
+TOK(unknown)
+
+TOK(eof)
+
+TOK(identifier)
+
+TOK(number)
+
+PUNCTUATOR(plus,            "+")
+PUNCTUATOR(minus,           "-")
+PUNCTUATOR(star,            "*")
+PUNCTUATOR(slash,           "/")
+PUNCTUATOR(less,            "<")
+PUNCTUATOR(lessequal,       "<=")
+PUNCTUATOR(greater,         ">")
+PUNCTUATOR(greaterequal,    ">=")
+PUNCTUATOR(equal,           "=")
+PUNCTUATOR(pound,           "#")
+PUNCTUATOR(colonequal,      ":=")
+
+PUNCTUATOR(semi,            ";")
+PUNCTUATOR(comma,           ",")
+PUNCTUATOR(l_paren,         "(")
+PUNCTUATOR(r_paren,         ")")
+PUNCTUATOR(dot,             ".")
+
+KEYWORD(begin)
+KEYWORD(call)
+KEYWORD(const)
+KEYWORD(do)
+KEYWORD(end)
+KEYWORD(if)
+KEYWORD(procedure)
+KEYWORD(read)
+KEYWORD(then)
+KEYWORD(var)
+KEYWORD(while)
+KEYWORD(write)
+KEYWORD(odd)
+
+#undef KEYWORD
+#undef PUNCTUATOR
+#undef TOK

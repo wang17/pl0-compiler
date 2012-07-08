@@ -1,0 +1,19 @@
+var x, y;
+
+procedure gcd;
+    var f, g;
+    begin
+        f := x;
+        g := y;
+        while f # g do
+        begin
+            if f < g then g := g - f;
+            if g < f then f := f - g;
+        end;
+        write(f);
+    end;
+
+begin
+    read(x, y);
+    call gcd;
+end.

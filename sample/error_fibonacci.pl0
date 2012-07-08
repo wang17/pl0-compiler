@@ -1,0 +1,17 @@
+const limit := 20;
+var m, n, k, count;
+
+begin
+    m := 1;
+    n = 1;
+    K := 1;
+    count := 0;
+    while count <= lim do
+    begin
+        write(k);
+        k := n;
+        n := m + n;
+        m := k;
+        count := count + 1
+    end
+end

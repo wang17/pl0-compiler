@@ -1,0 +1,8 @@
+var x, y, z;
+
+begin
+    x := 10;
+    y := 20;
+    z := x * y;
+    write(z);
+end.
